@@ -6,6 +6,5 @@
   </template>
   
   <script setup>
-  import PlatformForm from '~/components/forms/PlatformForm.vue'
   </script>
   

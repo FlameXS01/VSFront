@@ -15,21 +15,11 @@
           <h1 class="text-2xl text-green-400 font-bold">Checkpoint Reviews</h1>
         </div>
       </div>
-  
-      <!-- Navbar -->
-      <nav class="bg-gray-700 p-4">
-        <ul class="flex justify-center space-x-6">
-          <li>
-            <NuxtLink to="/" class="text-gray-400 hover:text-green-400">Juegos</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/platforms/platforms" class="text-gray-400 hover:text-green-400">Plataformas</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/users" class="text-gray-400 hover:text-green-400">Usuarios</NuxtLink>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
     </header>
   </template>
+
+<script setup>
+import Navbar from './Navbar.vue'; // Ajusta la ruta si es diferente
+</script>
   
