@@ -5,7 +5,7 @@
           <NuxtLink to="/" class="text-green-400 hover:underline">Juegos</NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/platforms/platforms" class="text-gray-400 hover:text-green-400">Plataformas</NuxtLink>
+          <NuxtLink to="/platforms" class="text-gray-400 hover:text-green-400">Plataformas</NuxtLink>
         </li>
         <li>
           <NuxtLink to="/users" class="text-gray-400 hover:text-green-400">Usuarios</NuxtLink>
@@ -13,4 +13,3 @@
       </ul>
     </nav>
   </template>
-  

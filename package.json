@@ -10,9 +10,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image": "1.8.1",
     "@nuxtjs/tailwindcss": "6.12.2",
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LanDArmas/frontGamesReview.git",
+  "author": "LanDArmas <egarciadearmas@gmail.com>",
+  "license": "MIT"
 }

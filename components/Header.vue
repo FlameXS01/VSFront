@@ -4,8 +4,9 @@
       <div class="flex items-center justify-between p-4">
         <div class="flex items-center space-x-4">
           <!-- Logo optimizado con NuxtImage -->
-          <NuxtImage
+          <NuxtImg
             src="/images/logo.png"
+            format="webp"
             alt="Checkpoint Reviews Logo"
             width="48"
             height="48"
