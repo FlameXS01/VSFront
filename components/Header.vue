@@ -12,7 +12,7 @@
             height="48"
             class="rounded-md"
           />
-          <h1 class="text-2xl text-green-400 font-bold">Checkpoint Reviews</h1>
+          <h1 class="text-2xl text-red-400 font-bold">RT Virtual</h1>
         </div>
       </div>
       <Navbar />
@@ -20,6 +20,6 @@
   </template>
 
 <script setup>
-import Navbar from './Navbar.vue'; // Ajusta la ruta si es diferente
+import Navbar from './Navbar.vue'; 
 </script>
   

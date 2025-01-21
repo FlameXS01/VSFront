@@ -6,7 +6,7 @@
       <input 
         v-model="form.nombre_plataforma" 
         type="text" 
-        placeholder="Ej: PlayStation, Xbox" 
+        placeholder="Ej: PlayStation, Xbox, Nintendo, PC" 
         class="p-2 bg-gray-700 text-white rounded-lg w-full mb-4" 
         required 
       />
@@ -15,6 +15,7 @@
       </button>
       <button @click="$emit('close')" type="button" class="bg-red-400 text-white py-2 px-6 rounded-lg hover:bg-red-500 transition ml-4">Cancelar</button>
     </form>
+    <p v-if="errorMessage" class="text-red-500">{{ errorMessage }}</p> <!-- Mostrar mensaje de error -->
   </div>
 </template>
 
@@ -29,6 +30,7 @@ const config = useRuntimeConfig(); // Define config aquí
 const form = ref({
   nombre_plataforma: ''
 });
+const errorMessage = ref(''); // Estado para el mensaje de error
 
 // Observa los cambios en props.plataforma
 watch(() => props.plataforma, (newVal) => {
@@ -58,6 +60,9 @@ const submitForm = async () => {
     emit('close');
   } catch (error) {
     console.error('Error al enviar el formulario:', error);
+    errorMessage.value = 'Hubo un error al enviar los datos. Por favor, intenta de nuevo.'; // Mostrar mensaje de error
   }
 };
 </script>
+
+
