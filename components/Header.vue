@@ -7,7 +7,7 @@
           <NuxtImg
             src="/images/logo.png"
             format="webp"
-            alt="Checkpoint Reviews Logo"
+            alt="RT Virtual shop logo"
             width="48"
             height="48"
             class="rounded-md"

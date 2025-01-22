@@ -1,9 +1,16 @@
 <template>
-    <footer class="bg-gray-800 p-4 text-center text-gray-400">
-      <p>© 2024 Checkpoint Reviews. Todos los derechos reservados.</p>
+  <footer class="bg-gray-800 p-4 text-gray-400 text-sm">
+    <div class="flex justify-end">
+      <p class="mr-4">© 2024 Tienda RT Virtual. Todos los derechos reservados.</p>
       <p>
-        Diseñado con ❤️ por el equipo de Checkpoint Reviews.
+        Tu destino para los mejores productos.
       </p>
-    </footer>
-  </template>
-  
+    </div>
+  </footer>
+</template>
+
+<style scoped>
+footer {
+  font-size: 0.875rem; 
+}
+</style>
