@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold mb-6 text-red-600">Iniciar Sesión</h1>
     <form @submit.prevent="login" class="w-full max-w-sm">
       <!-- Campo para el Nombre de Usuario -->
-      <label class="block mb-2 text-black">Nombre de Usuario</label>
+      <label class="block mb-2 text-white">Nombre de Usuario</label>
       <input 
         v-model="nombre_usuario" 
         type="text" 
@@ -13,7 +13,7 @@
       />
       
       <!-- Campo para la Contraseña -->
-      <label class="block mb-2 text-black">Contraseña</label>
+      <label class="block mb-2 text-white">Contraseña</label>
       <input 
         v-model="password" 
         type="password" 

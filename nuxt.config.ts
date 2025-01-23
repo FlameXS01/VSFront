@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      backendUrl: process.env.backend_url, // Variable de entorno para el backend
+      BACKEND_URL: process.env.backend_url, // Variable de entorno para el backend
     },
   },
 
@@ -37,7 +37,7 @@ export default defineNuxtConfig({
           method: "post"
         },
         signOut: {
-          path: "/api/user/out-session",
+          path: "/api/user/logout",
           method: "post"
         },
         getSession: {
