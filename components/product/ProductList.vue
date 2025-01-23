@@ -38,7 +38,6 @@ const isAdmin = ref(false); // Estado para verificar si el usuario es administra
 const fetchProducts = async () => {
   try {
     products.value = await $fetch(`${config.public.BACKEND_URL}/api/p/get-productos`);
-    //console.log(data.value);
     isAdmin.value = data.value?.rol === 'administrador'; // Verificar si el usuario es administrador
   } catch (error) {
     console.error('Error al obtener los productos:', error);

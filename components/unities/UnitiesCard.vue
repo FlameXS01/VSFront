@@ -1,46 +1,50 @@
 <template>
   <div class="bg-gray-800 p-6 rounded-lg text-center">
-    <NuxtImg
-      v-if="image"
-      :src="image"
-      alt="Imagen del producto"
-      class="w-full h-48 object-cover mb-4 rounded-lg"
-      width="300"
-      height="200"
-      format="webp"
-      lazy
-    />
-    <h3 class="text-2xl text-red-500 mb-4">{{ title }}</h3>
-    <p class="text-gray-400">{{ description }}</p>
-    <p class="text-lg text-white font-bold mt-2">{{ price }}</p> <!-- Mostrar el precio -->
-    <div class="mt-4">
-      <button @click="editProduct" class="bg-red-400 text-white py-2 px-6 rounded-lg hover:bg-red-500 transition mr-2">
+    <h3 class="text-2xl text-red-500 mb-4">{{ unity_name }}</h3>
+    <p class="text-gray-400">Complejo: {{ complex }}</p>
+    <p class="text-gray-400">Centro de Costo: {{ cost_center }}</p>
+    <div class="mt-4 ">
+      <button @click="editUnity" class="bg-red-400 text-white py-2 px-6 rounded-lg hover:bg-red-500 transition mr-2">
         Editar
       </button>
-      <button @click="deleteProduct" class="bg-gray-600 text-white py-2 px-6 rounded-lg hover:bg-gray-700 transition">
+      <button @click="deleteUnity" class="bg-gray-600 text-white py-2 px-6 rounded-lg hover:bg-gray-700 transition">
         Eliminar
       </button>
+      <button @click="handleViewProducts" class="bg-green-600 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition mt-4">
+        Manejar Productos
+      </button>
     </div>
+    <!-- <div class="mt-4">
+      <h4 class="text-lg text-white">Productos:</h4>
+      <ul class="text-gray-400">
+        <li v-for="product in products" :key="product.id">
+          {{ product.desc_prod }} - {{ product.price }} {{ product.unit }}
+        </li>
+      </ul>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
-  title: String,
-  description: String,
-  image: String, // Nueva propiedad para la URL de la imagen
-  product: Object, // Propiedad para el objeto del producto
-  price: Number // Nueva propiedad para el precio del producto
+  unity_name: String,
+  complex: String,
+  cost_center: String,
+  products: Array,
+  unity: Object // Propiedad para el objeto de la unidad
 });
 
-const emit = defineEmits(['edit', 'delete']);
+const emit = defineEmits(['edit', 'delete', 'viewProducts', 'addProduct']);
 
-const editProduct = () => {
-  emit('edit', props.product);
+const handleViewProducts = () => {
+  emit('viewProducts', props.unity.id); // Emitir el evento con el ID de la unidad
+};
+const editUnity = () => {
+  emit('edit', props.unity);
 };
 
-const deleteProduct = () => {
-  emit('delete', props.product.id); // Usar cod_prod como identificador
+const deleteUnity = () => {
+  emit('delete', props.unity.id); // Usar id como identificador
 };
 </script>
 

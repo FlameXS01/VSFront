@@ -11,13 +11,13 @@
         <NuxtLink to="/users" class="text-white hover:underline">Usuarios</NuxtLink>
       </li>
       <li v-if="showPurchases">
-        <NuxtLink to="/purchases" class="text-white hover:underline">Compras</NuxtLink>
+        <NuxtLink to="/purchases" class="text-white hover:underline">//Compras</NuxtLink>
       </li>
       <li v-if="showReviews">
-        <NuxtLink to="/reviews" class="text-white hover:underline">Reseñas</NuxtLink>
+        <NuxtLink to="/reviews" class="text-white hover:underline">//Reseñas</NuxtLink>
       </li>
       <li v-if="showOrders">
-        <NuxtLink to="/orders" class="text-white hover:underline">Pedidos</NuxtLink>
+        <NuxtLink to="/orders" class="text-white hover:underline">//Pedidos</NuxtLink>
       </li>
     </ul>
   </nav>

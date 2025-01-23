@@ -1,43 +1,35 @@
 <template>
   <div class="max-h-screen overflow-y-auto p-6">
     <form @submit.prevent="submitForm" class="bg-gray-800 text-white p-6 rounded-lg shadow-md max-w-lg mx-auto">
-    
-      <h2 class="text-2xl font-bold mb-4 text-center">{{ product ? 'Editar Producto' : 'Agregar Producto' }}</h2>
+      <h2 class="text-2xl font-bold mb-4 text-center">{{ unity ? 'Editar Unidad' : 'Agregar Unidad' }}</h2>
       
-      <label class="block mb-2">Nombre del Producto</label>
-      <input v-model="form.desc_prod" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa la descripción" style="color: black;" />
+      <label class="block mb-2">Nombre de la Unidad</label>
+      <input v-model="form.unity_name" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el nombre de la unidad" style="color: black;" />
       
-      <label class="block mb-2">Código de Producto</label>
-      <input v-model="form.cod_prod" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el código del producto" style="color: black;" />
+      <label class="block mb-2">Complejo</label>
+      <input v-model="form.complex" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el complejo" style="color: black;" />
       
-      <label class="block mb-2">Código de Ubicación</label>
-      <input v-model="form.cod_ub" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el código de ubicación" style="color: black;" />
+      <label class="block mb-2">Centro de Costo</label>
+      <input v-model="form.cost_center" type="text" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el centro de costo" style="color: black;" />
 
-      <label class="block mb-2">Precio</label>
-      <input v-model="form.price" type="number" required class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa el precio" style="color: black;" />
-      
-      <div class="flex space-x-4 mb-4">
-        <div class="flex-1">
-          <label class="block mb-2">Cantidad</label>
-          <input v-model="form.h_much" type="number" required class="p-2 border rounded-lg w-full" placeholder="Ingresa la cantidad" style="color: black;" />
+      <!-- <label class="block mb-2">Productos</label> -->
+      <!-- <div class="mb-4">
+        <div v-if="products.length === 0" class="text-gray-400">Cargando productos...</div>
+        <div v-else>
+          <div v-for="product in products" :key="product.id" class="flex items-center mb-2">
+            <input
+              type="checkbox"
+              :value="product.id"
+              v-model="form.productIds"
+              class="mr-2"
+            />
+            <label class="text-white">{{ product.desc_prod }}</label>
+          </div>
         </div>
-        <div class="flex-1">
-          <label class="block mb-2">Métrica</label>
-          <input v-model="form.unit" type="text" required class="p-2 border rounded-lg w-full" placeholder="Unidad de medida" style="color: black;" />
-        </div>
-      </div>
-
-      <label class="block mb-2">Unidad</label>
-      <select v-model="form.unityId" required class="p-2 border rounded-lg w-full mb-4 text-black">
-        <option value="" disabled>Selecciona una unidad</option>
-        <option v-for="unit in units" :key="unit.id" :value="unit.id">{{ unit.unity_name }}</option>
-      </select>
-
-      <label class="block mb-2">URL de Imagen</label>
-      <input v-model="form.url_imagen" type="text" class="p-2 border rounded-lg w-full mb-4" placeholder="Ingresa la URL de la imagen" style="color: black;" />
+      </div> -->
 
       <button type="submit" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition w-full">
-        {{ product ? 'Actualizar Producto' : 'Agregar Producto' }}
+        {{ unity ? 'Actualizar Unidad' : 'Agregar Unidad' }}
       </button>
     </form>
   </div>
@@ -46,72 +38,47 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const props = defineProps({
-  product: Object,
-});
 const config = useRuntimeConfig();
+
+const props = defineProps({
+  unity: Object,
+  products: Array // Lista de productos para seleccionar
+});
 
 const emit = defineEmits(['close', 'refresh']);
 
 const form = ref({
-  cod_prod: '',
-  cod_ub: '',
-  desc_prod: '',
-  price: 0,
-  h_much: 0,
-  unit: '',
-  unityId: '',
-  url_imagen: '',
+  unity_name: '',
+  complex: '',
+  cost_center: '',
+  productIds: []
 });
 
-// Rellena el formulario si se está editando un producto
-watch(() => props.product, (newProduct) => {
-  if (newProduct) {
-    form.value = { 
-      cod_prod: newProduct.cod_prod || '',
-      cod_ub: newProduct.cod_ub || '',
-      desc_prod: newProduct.desc_prod || '',
-      price: newProduct.price || 0,
-      h_much: newProduct.h_much || 0,
-      unit: newProduct.unit || '',
-      unityId: newProduct.unityId || '',
-      url_imagen: newProduct.url_imagen || ''
+// Rellena el formulario si se está editando una unidad
+watch(() => props.unity, (newUnity) => {
+  if (newUnity) {
+  form.value = { 
+      unity_name: newUnity.unity_name || '',
+      complex: newUnity.complex || '',
+      cost_center: newUnity.cost_center || '',
+      productIds: newUnity.products.map(product => product.id) || []
     };
   }
 });
 
-// Lista de unidades
-const units = ref([
-
-]);
-
-// Función para obtener las unidades desde el backend
-const fetchUnits = async () => {
-  try {
-    const response = await $fetch(`${config.public.BACKEND_URL}/api/u/get-unidades`);
-    units.value = response; // Asigna la respuesta a `units`
-  } catch (error) {
-    console.error('Error al obtener las unidades:', error);
-  }
-};
-
-onMounted(() => {
-  fetchUnits();
-});
-
+// Función para enviar el formulario
 const submitForm = async () => {
   try {
-    if (props.product) {
-      // Actualizar producto
-      const id = props.product.id;
-      await $fetch(`${config.public.BACKEND_URL}/api/p/edit-productos/${id}`, {
+    if (props.unity) {
+      // Actualizar unidad
+      const id = props.unity.id;
+      await $fetch(`${config.public.BACKEND_URL}/api/u/edit-unidades/${id}`, {
         method: 'PUT',
         body: form.value,
       });
     } else {
-      // Agregar nuevo producto
-      console.log('Datos a enviar: >>>>>>>>>', form.value);
-      await $fetch(`${config.public.BACKEND_URL}/api/p/add-productos`, {
+      // Agregar nueva unidad
+      await $fetch(`${config.public.BACKEND_URL}/api/u/add-unidades`, {
         method: 'POST',
         body: form.value,
       });
@@ -119,7 +86,7 @@ const submitForm = async () => {
     emit('refresh');
     emit('close');
   } catch (error) {
-    console.error('Error al guardar el producto:', error);
+    console.error('Error al guardar la unidad:', error);
     // Aquí puedes agregar un mensaje de error para el usuario
   }
 };
