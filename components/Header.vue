@@ -1,18 +1,18 @@
 <template>
-  <header class="bg-gray-800">
+  <header class="bg-red-800">
     <!-- Logo y Nombre -->
     <div class="flex items-center justify-between p-4">
       <div class="flex items-center space-x-4">
         <!-- Logo optimizado con NuxtImage -->
         <NuxtImg
-          src="/images/logo.png"
+          src="../public/images/logo.png"
           format="webp"
           alt="RT Virtual shop logo"
-          width="48"
+          width="100"
           height="48"
           class="rounded-md"
         />
-        <h1 class="text-2xl text-red-400 font-bold">RT Virtual</h1>
+        <h1 class="text-4xl text-white font-bold">RT Virtual</h1>
       </div>
       <div class="flex items-center space-x-4">
         <!-- Botón de cerrar sesión -->

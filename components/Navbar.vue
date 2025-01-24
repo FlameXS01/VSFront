@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-red-800 p-4">
+  <nav v-if="isAuth" class="bg-red-800 p-4">
     <ul class="flex justify-center space-x-6">
       <li v-if="showProducts">
         <NuxtLink to="/products" class="text-white hover:underline">Productos</NuxtLink>
@@ -11,13 +11,13 @@
         <NuxtLink to="/users" class="text-white hover:underline">Usuarios</NuxtLink>
       </li>
       <li v-if="showPurchases">
-        <NuxtLink to="/purchases" class="text-white hover:underline">//Compras</NuxtLink>
+        <NuxtLink to="/purchases" class="text-white hover:underline">Compras</NuxtLink>
       </li>
       <li v-if="showReviews">
-        <NuxtLink to="/reviews" class="text-white hover:underline">//Reseñas</NuxtLink>
+        <NuxtLink to="/reviews" class="text-white hover:underline">Reseñas</NuxtLink>
       </li>
       <li v-if="showOrders">
-        <NuxtLink to="/orders" class="text-white hover:underline">//Pedidos</NuxtLink>
+        <NuxtLink to="/orders" class="text-white hover:underline">Pedidos</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -25,9 +25,10 @@
 
 <script setup>
 import { computed } from 'vue';
-const { data } = useAuth();
 
+const { data, status } = useAuth();
 const userRole = computed(() => data.value?.rol); // Computed property para obtener el rol del usuario
+const isAuth = computed(() => status.value === 'authenticated'); // Computed property para verificar autenticación
 
 const showProducts = true; // Siempre mostrar Productos
 const showUnits = computed(() => userRole.value === 'administrador'); // Solo mostrar para admin
@@ -36,3 +37,7 @@ const showPurchases = computed(() => userRole.value === 'usuario'); // Mostrar p
 const showReviews = true; // Siempre mostrar Reseñas
 const showOrders = computed(() => userRole.value === 'administrador'); // Solo mostrar para admin
 </script>
+
+<style scoped>
+/* Estilos opcionales */
+</style>
