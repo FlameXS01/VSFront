@@ -2,7 +2,7 @@
   <nav class="bg-red-800 p-4">
     <ul class="flex justify-center space-x-6">
       <li v-if="showProducts">
-        <NuxtLink to="/" class="text-white hover:underline">Productos</NuxtLink>
+        <NuxtLink to="/products" class="text-white hover:underline">Productos</NuxtLink>
       </li>
       <li v-if="showUnits">
         <NuxtLink to="/units" class="text-white hover:underline">Unidades</NuxtLink>

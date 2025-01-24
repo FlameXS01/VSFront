@@ -47,7 +47,6 @@ const config = useRuntimeConfig();
 
 
 const login = async () => {
-  console.error("a ver q vergas hay aqui ");
   try {
     const response = await signIn(
       { email: nombre_usuario.value, password: password.value },
